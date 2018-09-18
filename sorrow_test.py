@@ -5,35 +5,29 @@ A simple module that can be used to test python code.
 class testing:
 	""" A class that contains a testing method."""
 	
-	def __init__(self, function_name, *func_args, expected_outcome):
-		self.function_name = function_name
-		self.func_args = func_args
-		self.expected = expected_outcome
+	def __init__(self):
+		self.tests_run = 0
+		self.failures = 0
 		
+			
 		
-		
-		
-	def func_checker(self):
+	def smoke(self, func_result, func_expected):
 		""" 
 		A method that can check functions for the correct output.
-		
-		Currently the method can only check fucntions with a single, 
-		list input for accuracy. 
 		"""
+		self.tests_run += 1
 		
-		
-		er_message = 'Test failed!'
-		suc_message = 'Test passed!'
-		
-		args = self.func_args[0]
-		
-		
-		
-		tst = self.function_name(args)
-		
-		
-		if tst != self.expected:
-			print(er_message)
+		if func_result == func_expected:
+			pass
+		else: 
+			self.failures += 1
+	
+	def reporting(self):
+		if self.failures > 0:
+			print('Tests Failed: ' + self.failures)
+			print('Tests Successful: ' + (self.tests_run - self.failures))
 		else:
-			print(suc_message)
+			print('All tests were successful.')
+			
+		
 		
